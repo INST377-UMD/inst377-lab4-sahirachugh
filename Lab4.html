@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<head>
+    <title>My Interactive Page</title>
+    <style>
+        body {
+            font-family: 'Times New ', Times, serif, sans-serif;
+            background-color: lavender;
+        }
+        .lab4 {
+            border: 1px solid #000;
+            margin: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 id="page-heading">My Interactive Page</h1>
+
+    <div class="lab4" id="alert-me">
+        <h2>Alert Me</h2>
+        <form id="alert-form">
+            <input type="text" id="name" placeholder="Name: " required>
+            <button type="submit">Alert Me!</button>
+        </form>
+    </div>
+
+    <div class="lab4" id="change-color">
+        <h2>Change Color</h2>
+        <button id="color-button">Change Color</button>
+    </div>
+
+    <div class="lab4" id="text-tester">
+        <h2>Text Tester</h2>
+        <form id="text-validation-form">
+            <input type="text" id="text-input" placeholder="Text Tester: " required>
+            <button type="button" id="validate-button">Validate Text</button>
+        </form>
+    </div>
+
+    <div class="lab4" id="add-text">
+        <h2> Add Text </h2>
+        <button id="add-text-button">Add Text</button>
+    </div>
+
+    <script>
+        document.getElementById('alert-form').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+            const name = document.getElementById('name').value;
+            alert(`Hi ${name}!`);
+        });
+
+        let isPink = false;
+        document.getElementById('color-button').addEventListener('click', function() {
+            document.body.style.backgroundColor = isPink ? 'lavender' : 'pink';
+            isPink = !isPink; 
+        });
+
+        document.getElementById('validate-button').addEventListener('click', function() {
+            const text = document.getElementById('text-input').value;
+            const validation = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+            if (validation.test(text)) {
+                alert("Special character found!");
+            } else {
+                alert("Text is valid.");
+            }
+        });
+
+        document.getElementById('add-text-button').addEventListener('click', function() {
+            document.getElementById('page-heading').innerText += " Add Text";
+        });
+    </script>
+
+</body>
+</html>
